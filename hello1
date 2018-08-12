@@ -1,0 +1,95 @@
+#include<iostream>
+#include<stdio.h>
+#include<stdlib.h>
+using namespace std;
+/*
+ * Definition for singly-linked list.
+ */
+ struct ListNode {
+     int val;
+     struct ListNode *next;
+ };
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2);
+int main()
+{
+    /*
+    struct ListNode* a;
+    a = (struct ListNode* )malloc(sizeof(struct ListNode));
+    printf("%d\r\n",sizeof(struct ListNode));
+    printf("%d\r\n",sizeof(*a));
+    printf("%d\r\n",sizeof(int));
+    free(a);
+    */
+    struct ListNode* a,*b,*c,*d,*e;
+    a = (struct ListNode* )malloc(sizeof(struct ListNode));
+    b = (struct ListNode* )malloc(sizeof(struct ListNode));
+    c = (struct ListNode* )malloc(sizeof(struct ListNode));
+    d = (struct ListNode* )malloc(sizeof(struct ListNode));
+    a->val = 2;
+    b->val = 5;
+    a->next = c;
+    b->next = d;
+    c->val = 4;
+    d->val = 6;
+    c->next = (struct ListNode* )malloc(sizeof(struct ListNode));
+    d->next = (struct ListNode* )malloc(sizeof(struct ListNode));
+    c = c->next;
+    d = d->next;
+    c->val = 3;
+    d->val = 4;
+    c->next = NULL;
+    d->next = NULL;
+    e = addTwoNumbers(a, b);
+    printf("%d \r\n",e->val);
+    e = e->next;
+    printf("%d \r\n",e->val);
+    e = e->next;
+    printf("%d \r\n",e->val);
+    /*e = e->next;
+    printf("%d \r\n",e->val);*/
+    system("pause");
+    return 0;
+}
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
+    struct ListNode* l3,*result;
+    int tempA,tempB;
+    result = (struct ListNode* )malloc(sizeof(struct ListNode));
+    l3 = result;
+    int sum = 0;
+
+    while(1){
+        if(l1->next != NULL ){
+            tempA = l1->val; 
+            l1 = l1->next; 
+        }
+        else{
+            tempA = 0;
+        }
+        if(l2->next != NULL ){
+            tempB = l2->val;
+            l2 = l2->next;  
+        }
+        else{
+            tempB = 0;
+        }
+        sum = tempA +tempB + sum;
+        if(sum >= 10){
+            l3->val = sum - 10;                   
+            sum = 1;
+        }
+        else{
+            l3->val = sum;
+            sum = 0;
+        }
+        l3->next = (struct ListNode* )malloc(sizeof(struct ListNode)); 
+        l3 = l3->next;
+        if(l1->next == NULL && l2->next == NULL){
+            break;
+        }
+ 
+    }
+     
+      l3->next = NULL;
+    
+    return result;
+}

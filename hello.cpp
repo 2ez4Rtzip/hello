@@ -36,6 +36,7 @@ int lengthOfLongestSubstring(char* s) {
 }
 int main()
 {
+    /*for test*/
     char s[10] = "abbbbabca";
     int num;
     num = lengthOfLongestSubstring(s);
